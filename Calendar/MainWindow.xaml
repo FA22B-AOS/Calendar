@@ -31,21 +31,21 @@
 
             <StackPanel>
                 <!--Year Selection-->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 50 0 30">
-                    <Button Style="{StaticResource button}">
+                <StackPanel x:Name="yearPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 50 0 30">
+                    
+                    <Button Style="{StaticResource button}" Click="OnPreviousYearClick">
                         <fa:ImageAwesome Icon="AngleLeft" Style="{StaticResource angle}"/>
                     </Button>
 
-                    <Button Content="2022" Style="{StaticResource button}"/>
-                    <Button Content="2023" Style="{StaticResource button}"/>
-                    <Button Content="2024" Style="{StaticResource button}" FontSize="24" Foreground="#c76f69"/>
-                    <Button Content="2025" Style="{StaticResource button}"/>
-                    <Button Content="2026" Style="{StaticResource button}"/>
+                    <Button Content="2022" Style="{StaticResource button}" Tag="2022" Click="OnYearButtonClick"/>
+                    <Button Content="2023" Style="{StaticResource button}" Tag="2023" Click="OnYearButtonClick"/>
+                    <Button Content="2024" Style="{StaticResource button}" Tag="2024" FontSize="24" Foreground="#c76f69" FontWeight="SemiBold" Click="OnYearButtonClick"/>
+                    <Button Content="2025" Style="{StaticResource button}" Tag="2025" Click="OnYearButtonClick"/>
+                    <Button Content="2026" Style="{StaticResource button}" Tag="2026" Click="OnYearButtonClick"/>
 
-                    <Button Style="{StaticResource button}">
+                    <Button Style="{StaticResource button}" Click="OnNextYearClick">
                         <fa:ImageAwesome Icon="AngleRight" Style="{StaticResource angle}"/>
                     </Button>
-
                 </StackPanel>
 
                 <!--Month Selection-->

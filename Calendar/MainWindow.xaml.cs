@@ -80,5 +80,76 @@ namespace Calendar
                 }
             }
         }
+
+        private void OnPreviousYearClick(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is MainViewModel viewModel)
+            {
+                viewModel.SelectedYear--;
+                UpdateYearButtons(viewModel.SelectedYear);
+            }
+        }
+
+        private void OnNextYearClick(object sender, RoutedEventArgs e)
+        {
+
+            if (DataContext is MainViewModel viewModel)
+            {
+                viewModel.SelectedYear++;  
+                UpdateYearButtons(viewModel.SelectedYear);
+            }
+        }
+
+        private void OnYearButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int selectedYear)
+            {
+                if (DataContext is MainViewModel viewModel)
+                {
+                    viewModel.SelectedYear = selectedYear;
+                    UpdateYearButtons(viewModel.SelectedYear);
+                }
+            }
+        }
+
+        private void UpdateYearButtons(int selectedYear)
+        {
+            int baseYear = selectedYear - 2;
+            var buttons = yearPanel.Children.OfType<Button>().ToList();
+
+            if (buttons.Count != 7)
+            {
+                return;
+            }
+
+            for (int i = 1; i <= 5; i++)
+            {
+                int year = baseYear + i - 1;
+                buttons[i].Content = year.ToString();
+                buttons[i].Tag = year;
+            }
+
+            foreach (var button in buttons)
+            {
+                button.ClearValue(Button.ForegroundProperty);
+                button.ClearValue(Button.FontWeightProperty);
+            }
+
+            var selectedButton = buttons.FirstOrDefault(b =>
+            {
+                if (b.Tag is int buttonYear)
+                {
+                    return buttonYear == selectedYear;
+                }
+                return false;
+            });
+
+            if (selectedButton != null)
+            {
+                selectedButton.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#c76f69"));
+                selectedButton.FontWeight = FontWeights.SemiBold;
+            }
+        }
+
     }
 }
