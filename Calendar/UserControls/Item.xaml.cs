@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Calendar.UserControls
+namespace CalendarApp.UserControls
 {
     public partial class Item : UserControl
     {

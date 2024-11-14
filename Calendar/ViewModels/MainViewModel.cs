@@ -6,20 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calendar.ViewModels
+namespace CalendarApp.ViewModels
 {
     internal class MainViewModel : INotifyPropertyChanged
     {
         private int _selectedMonth;
         private int _selectedYear;
+        private DateTime _selectedDate;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainViewModel()
         {
-            // Initialisieren des Startmonats und -jahres
             SelectedMonth = DateTime.Now.Month;
             SelectedYear = DateTime.Now.Year;
+            SelectedDate = DateTime.Now; 
         }
 
         public int SelectedMonth
@@ -37,8 +38,6 @@ namespace Calendar.ViewModels
             }
         }
 
-        public string SelectedMonthText => CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(SelectedMonth);
-
         public int SelectedYear
         {
             get => _selectedYear;
@@ -48,12 +47,32 @@ namespace Calendar.ViewModels
                 {
                     _selectedYear = value;
                     OnPropertyChanged(nameof(SelectedYear));
-                    OnPropertyChanged(nameof(SelectedDate));
+                    OnPropertyChanged(nameof(SelectedDate)); 
                 }
             }
         }
 
-        public DateTime SelectedDate => new DateTime(SelectedYear, SelectedMonth, 1);
+        public DateTime SelectedDate
+        {
+            get => _selectedDate;
+            set
+            {
+                if (_selectedDate != value)
+                {
+                    _selectedDate = value;
+                    OnPropertyChanged(nameof(SelectedDate));
+                    OnPropertyChanged(nameof(SelectedDay)); 
+                    OnPropertyChanged(nameof(SelectedMonthText));
+                    OnPropertyChanged(nameof(SelectedWeekdayText)); 
+                }
+            }
+        }
+
+        public string SelectedMonthText => CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(SelectedDate.Month);
+
+        public string SelectedWeekdayText => SelectedDate.ToString("dddd", CultureInfo.CurrentCulture); 
+
+        public int SelectedDay => SelectedDate.Day;
 
         protected void OnPropertyChanged(string name)
         {

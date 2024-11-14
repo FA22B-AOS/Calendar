@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace Calendar
+namespace CalendarApp
 {
     /// <summary>
     /// Interaction logic for App.xaml

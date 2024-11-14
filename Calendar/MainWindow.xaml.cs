@@ -1,10 +1,10 @@
-﻿using Calendar.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using CalendarApp.ViewModels;
 
-namespace Calendar
+namespace CalendarApp
 {
     public partial class MainWindow : Window
     {
@@ -148,6 +148,19 @@ namespace Calendar
             {
                 selectedButton.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#c76f69"));
                 selectedButton.FontWeight = FontWeights.SemiBold;
+            }
+        }
+
+        private void OnCalendarSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is Calendar calendar && calendar.SelectedDate.HasValue)
+            {
+                var selectedDate = calendar.SelectedDate.Value;
+
+                if (DataContext is MainViewModel viewModel)
+                {
+                    viewModel.SelectedDate = selectedDate;
+                }
             }
         }
 

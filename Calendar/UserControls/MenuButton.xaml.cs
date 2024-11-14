@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Calendar.UserControls
+namespace CalendarApp.UserControls
 {
     public partial class MenuButton : UserControl
     {
