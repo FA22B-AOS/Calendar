@@ -66,7 +66,7 @@
 
                 <Separator Height="0.8" Background="#cacaca" Margin="30 10"/>
 
-                <TextBlock Text="{Binding SelectedMonthText}" Foreground="#c73f69" FontSize="24" TextAlignment="Center" FontWeight="SemiBold" Margin=" 0 15 0 20" />
+                <TextBlock Text="{Binding ShownCalendarMonthText}" Foreground="#c73f69" FontSize="24" TextAlignment="Center" FontWeight="SemiBold" Margin=" 0 15 0 20" />
 
                 <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" Style="{DynamicResource CalendarStyle1}" DisplayDate="{Binding ShownCalendarDate , Mode=OneWay}" SelectedDatesChanged="OnCalendarSelectedDateChanged"/>
             </StackPanel>

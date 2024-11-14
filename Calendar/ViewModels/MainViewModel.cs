@@ -35,6 +35,7 @@ namespace CalendarApp.ViewModels
                     OnPropertyChanged(nameof(SelectedMonthText));
                     OnPropertyChanged(nameof(SelectedDate));
                     OnPropertyChanged(nameof(ShownCalendarDate));
+                    OnPropertyChanged(nameof(ShownCalendarMonthText));
                 }
             }
         }
@@ -50,6 +51,7 @@ namespace CalendarApp.ViewModels
                     OnPropertyChanged(nameof(SelectedYear));
                     OnPropertyChanged(nameof(SelectedDate));
                     OnPropertyChanged(nameof(ShownCalendarDate));
+                    OnPropertyChanged(nameof(ShownCalendarMonthText));
                 }
             }
         }
@@ -70,13 +72,16 @@ namespace CalendarApp.ViewModels
             }
         }
 
+        public DateTime ShownCalendarDate => new DateTime(SelectedYear, SelectedMonth, 1);
+
+        public string ShownCalendarMonthText => CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(ShownCalendarDate.Month);
+
         public string SelectedMonthText => CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(SelectedDate.Month);
 
         public string SelectedWeekdayText => SelectedDate.ToString("dddd", CultureInfo.CurrentCulture); 
 
         public int SelectedDay => SelectedDate.Day;
 
-        public DateTime ShownCalendarDate => new DateTime(SelectedYear, SelectedMonth, 1);
 
         protected void OnPropertyChanged(string name)
         {
